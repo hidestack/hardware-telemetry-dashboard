@@ -12,10 +12,12 @@ Uma plataforma Fullstack em tempo real para monitorização de telemetria de com
 - **Axios** (Consumo de API REST)
 
 ### **Back-end & Mensageria**
-- **Node.js** & **Express**
-- **MQTT Protocol** (Broker embutido com **Aedes**)
-- **ESModules** (Sintaxe moderna `import/export`)
-
+- **Node.js** com **ESModules** (import/export)
+- **Express.js** (API REST e rotas)
+- **Aedes** (Broker MQTT interno embutido)
+- **MQTT.js** (Cliente MQTT para subscrição de tópicos)
+- **Dotenv** & **CORS**
+  
 ---
 
 ## 🛠️ Arquitetura do Sistema
@@ -27,6 +29,37 @@ Uma plataforma Fullstack em tempo real para monitorização de telemetria de com
 
 ---
 
+📁 Estrutura de Diretórios
+```bash
+hardware-telemetry-dashboard/
+├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   │   ├── broker.js         # Instância e inicialização do Broker MQTT (Aedes)
+│   │   │   └── mqtt.js           # Cliente MQTT interno conectado à porta 1883
+│   │   ├── controllers/
+│   │   │   └── hardwareController.js # Lógica de negócio (listar e alugar)
+│   │   ├── routes/
+│   │   │   └── hardwareRoutes.js # Endpoints REST para o front-end
+│   │   ├── services/
+│   │   │   └── telemetryService.js   # Processamento das mensagens de telemetria
+│   │   ├── simulator.js          # Script simulador de emissão de telemetria
+│   │   ├── app.js                # Configuração de middlewares Express
+│   │   └── server.js             # Ponto de entrada (Servidor HTTP + Broker)
+│   ├── .env                      # Configuração de variáveis de ambiente
+│   └── package.json
+│
+├── frontend/
+│   ├── src/
+│   │   ├── App.vue               # Dashboard reativo principal
+│   │   └── main.js
+│   ├── index.html
+│   └── package.json
+│
+├── .gitignore                    # Regras Globais do Git (node_modules, .env)
+└── README.md
+```
+
 ## 📦 Como Executar o Projeto
 
 ### **Pré-requisitos**
@@ -35,8 +68,8 @@ Uma plataforma Fullstack em tempo real para monitorização de telemetria de com
 
 ### **1. Clonar o repositório**
 ```bash
-git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
-cd SEU_REPOSITORIO
+git clone [https://github.com/hidestack/hardware-telemetry-dashboard.git](https://github.com/hidestack/hardware-telemetry-dashboard.git)
+cd hardware-telemetry-dashboard
 ```
 
 ### **2. Iniciar o Back-end e Broker MQTT**
@@ -58,5 +91,8 @@ cd frontend
 npm install
 npm run dev
 ```
+
+👤 Autor
+Desenvolvido por Antonio Thiago.
 
 Aceda à aplicação em: `http://localhost:5173`
