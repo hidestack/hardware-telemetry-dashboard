@@ -92,7 +92,8 @@ npm install
 npm run dev
 ```
 
+Acesso à aplicação em: `http://localhost:5173`
+
 👤 Autor
 Desenvolvido por Antonio Thiago.
 
-Aceda à aplicação em: `http://localhost:5173`
